@@ -22,14 +22,14 @@
 
 
 ## GET "/Api/v1/salida" Resquest Body
-```json
+```git status
 {
     fecha_inicio: String "AAAA-MM-DD"
     fecha_final: String "AAAA-MM-DD"
 {
 ```
 ## GET "/Api/v1/salida" Response Body (200)
-```json
+```
 {
     vuelo: String
     fecha: String "AAAA-MM-DDTHH:MM:SS.000Z"
@@ -42,7 +42,7 @@
 {
 ```
 ## POST "/Api/v1/salida" Request Body
-```json
+```
 {
     vuelo: String
     fecha: String "AAAA-MM-DDTHH:MM:SS.000Z"
