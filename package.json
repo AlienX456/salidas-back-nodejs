@@ -1,0 +1,26 @@
+{
+  "name": "salidas-back-nodejs",
+  "version": "1.0.0",
+  "description": "Back-End Microservicio Salidas",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlienX456/salidas-back-nodejs.git"
+  },
+  "keywords": [
+    "nodejs",
+    "chai",
+    "mocha",
+    "salidas",
+    "BdB"
+  ],
+  "author": "Esteban E Romero",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/AlienX456/salidas-back-nodejs/issues"
+  },
+  "homepage": "https://github.com/AlienX456/salidas-back-nodejs#readme"
+}
