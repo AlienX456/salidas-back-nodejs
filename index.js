@@ -1,7 +1,7 @@
 //DEPENDENCIAS
 const express = require('express')
 const app = express()
-
+app.use(express.json())
 //QUERIES
 const db = require('./queries')
 
