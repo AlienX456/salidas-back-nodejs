@@ -4,11 +4,12 @@ const url = "mongodb://127.0.0.1:27017/"
 
 const mongdb = "salidas-db"
 
-const collection = "salidas" 
+const collection = "salidas"
 
 
 
 const getSalidas = (request, response) => {
+  
 
   if (!(typeof request.body.fecha_inicio == 'undefined') && !(typeof request.body.fecha_final == 'undefined')){
 
@@ -38,9 +39,10 @@ const getSalidas = (request, response) => {
 
 const postSalida = (request, response) => {
 
-    /*
-     * insertar correcciones y verificaciones
-     */
+  if (!(typeof request.body.vuelo == 'undefined') && !(typeof request.body.fecha == 'undefined') 
+       && !(typeof request.body.retraso_horas == 'undefined') && !(typeof request.body.destino_ciudad == 'undefined')
+       && !(typeof request.body.internacional == 'undefined') && !(typeof request.body.aerolinea == 'undefined')
+       && !(typeof request.body.pasajeros == 'undefined') && !(typeof request.body.avion == 'undefined')){
 
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
@@ -52,6 +54,10 @@ const postSalida = (request, response) => {
           response.status(201).send("Carta de vuelo registrada")
         });
       });
+  }
+  else{
+    response.status(400).json({error:'Formato del body erroneo (llaves erroneas)'})
+  }
     
 }
 

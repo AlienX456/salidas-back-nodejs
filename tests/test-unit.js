@@ -24,10 +24,21 @@ const post_json_body = {
                         retraso_horas: 5, 
                         destino_ciudad: "Toronto", 
                         internacional: true, 
-                        aerolínea:"Air Canada", 
-                        Pasajeros: 100,
+                        aerolinea:"Air Canada", 
+                        pasajeros: 100,
                         avion: "787-7"
                        }
+
+const post_json_body_bad = { 
+                        vuel: "AC235", 
+                        fecha: "2020-09-04T20:20:10.000Z", 
+                        retraso_horas: 5, 
+                        destino_ciudad: "Toronto", 
+                        internacional: true, 
+                        aerolinea:"Air Canada", 
+                        pasajeros: 100,
+                        avion: "787-7"
+}
 
 
 
@@ -63,7 +74,7 @@ describe('Obtener cartas de vuelo de salida: ',()=>{
 
     })
 
-    it('Recibir bad request si el formato del body (fechas) es incorrecto',(done)=>{
+    it('Recibir Bad Request si el formato del body (fechas) es incorrecto',(done)=>{
 
         chai.request(url)
         .get(api_v1_url_get).send(get_json_body_bad2)
@@ -79,11 +90,24 @@ describe('Obtener cartas de vuelo de salida: ',()=>{
 
 describe('Registrar cartas de vuelo de salida: ',()=>{
 
-    it('Registrar una carta',(done)=>{
+    it('Recibir estado 201 al registrar una carta',(done)=>{
         chai.request(url)
         .post(api_v1_url_post).send(post_json_body)
         .end( function(err,res){
             expect(res).to.have.status(201)
+            done()
+        }
+
+        )
+    }
+    )
+
+    it('Recibir Bad Request al usar llaves erroneas',(done)=>{
+        chai.request(url)
+        .post(api_v1_url_post).send(post_json_body_bad)
+        .end( function(err,res){
+            expect(res).to.have.status(400)
+            expect(res.body).to.have.property("error").to.be.equal("Formato del body erroneo (llaves erroneas)")
             done()
         }
 
