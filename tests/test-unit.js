@@ -14,6 +14,8 @@ const api_v1_url_post = "/api/v1/salida"
 
 const get_json_body = {fecha_inicio:"2019-01-01", fecha_final:"2019-01-02"}
 
+const get_json_body_bad = {fecha_inici:"2019-01-01", fecha_final:"2019-01-02"}
+
 const post_json_body = { 
                         vuelo: "AC235", 
                         fecha: "2020-08-04T20:20:10.000Z", 
@@ -44,8 +46,19 @@ describe('Obtener cartas de vuelo de salida: ',()=>{
         }
 
         )
+    },
+
+    it('Recibir bad request si el formato del body es incorrecto'),(done)=>{
+
+        chai.request(url)
+        .get(api_v1_url_get).send(get_json_body_bad)
+        .end( function(err,res){
+            expect(res).to.have.status(404)
+            done()
+        }
+        )
+
     }
-    
     )
 
     
