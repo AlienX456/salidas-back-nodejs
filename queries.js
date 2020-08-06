@@ -18,7 +18,7 @@ const getSalidas = (request, response) => {
       MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db(mongdb);
-        dbo.collection(collection).find({fecha: {"$gte": request.body.fecha_inicio, "$lt": request.body.fecha_final}}).toArray(function(err, result) {
+        dbo.collection(collection).find({fecha: {"$gte": request.body.fecha_inicio, "$lt": request.body.fecha_final}},{projection:{_id:0}}).toArray(function(err, result) {
           if (err) throw err;
           db.close();
           response.status(200).json(result);
@@ -39,10 +39,9 @@ const getSalidas = (request, response) => {
 
 const postSalida = (request, response) => {
 
-  if (!(typeof request.body.vuelo == 'undefined') && !(typeof request.body.fecha == 'undefined') 
-       && !(typeof request.body.retraso_horas == 'undefined') && !(typeof request.body.destino_ciudad == 'undefined')
-       && !(typeof request.body.internacional == 'undefined') && !(typeof request.body.aerolinea == 'undefined')
-       && !(typeof request.body.pasajeros == 'undefined') && !(typeof request.body.avion == 'undefined')){
+  atributos_v1 = ["vuelo","fecha","retraso_horas","destino_ciudad","internacional","aerolinea","pasajeros","avion"]
+
+  if (JSON.stringify(atributos_v1)==JSON.stringify(Object.keys(request.body))){
 
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
