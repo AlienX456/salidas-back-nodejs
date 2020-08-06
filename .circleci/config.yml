@@ -16,6 +16,6 @@ jobs:
 
 
 workflows:
-    angular-test:
+    app-test:
         jobs:
          - test
