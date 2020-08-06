@@ -1,6 +1,10 @@
 var MongoClient = require('mongodb').MongoClient;
 
-const url = "mongodb://127.0.0.1:27017/"
+const user = process.env.USERMONGO
+
+const pass = process.env.PASSMONGO
+
+const url = "mongodb+srv://"+user+":"+pass+"@cluster0.6zcns.mongodb.net/<dbname>?retryWrites=true&w=majority"
 
 const mongdb = "salidas-db"
 
