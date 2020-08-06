@@ -49,8 +49,8 @@
     retraso_horas: Number
     destino_ciudad: String
     internacional: True|False
-    aerolínea:String
-    Pasajeros: Number
+    aerolinea:String
+    pasajeros: Number
     avion: String
 {
 ```
