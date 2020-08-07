@@ -6,7 +6,7 @@ app.use(express.json())
 const db = require('./queries')
 
 //PORT FOR SERVE
-const port = process.env.PORT
+const port = 5000
 
 //API OPERATIONS
 

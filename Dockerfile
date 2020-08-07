@@ -6,6 +6,4 @@ COPY index.js queries.js package.json package-lock.json ./
 
 RUN npm install
 
-EXPOSE 5000
-
 CMD [ "node", "index.js" ]
