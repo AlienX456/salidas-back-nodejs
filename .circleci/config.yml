@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  aws-ecr: circleci/aws-ecr@6.5.0
+  aws-ecs: circleci/aws-ecs@0.0.10
 
 jobs:
     test:
@@ -16,6 +19,10 @@ jobs:
 
 
 workflows:
-    app-test:
-        jobs:
-         - test
+  build-and-deploy:
+      jobs:
+        - test
+        - aws-ecr/build-and-push-image:
+            account-url: AWS_ECR_ACCOUNT_URL
+            repo: '${AWS_REPO}'
+            tag: '${AWS_REPO_TAG}'
