@@ -27,4 +27,10 @@ workflows:
               - test
             account-url: AWS_ECR_ACCOUNT_URL
             repo: '${AWS_REPO}'
-            tag: '${AWS_REPO_TAG}'
+            tag: '${CIRCLE_SHA1}'
+        - aws-ecs/deploy-service-update:
+            requires:
+              - aws-ecr/build-and-push-image
+            family: "${AWS_SERVICE_NAME_PREFIX}-service"
+            cluster-name: "${AWS_CLUSTER_NAME_PREFIX}-cluster"
+            container-image-name-updates: "container=${AWS_SERVICE_NAME_PREFIX}-service,tag=${CIRCLE_SHA1}"
