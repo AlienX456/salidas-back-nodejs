@@ -23,6 +23,7 @@ workflows:
       jobs:
         - test
         - aws-ecr/build-and-push-image:
+            context: AWSCONTEXT
             filters:
               branches:
                 only: 
@@ -33,6 +34,7 @@ workflows:
             repo: '${AWS_REPO}'
             tag: '${CIRCLE_SHA1}'
         - aws-ecs/deploy-service-update:
+            context: AWSCONTEXT
             filters:
               branches:
                 only: 
@@ -40,6 +42,6 @@ workflows:
             requires:
               - aws-ecr/build-and-push-image
             family: "${AWS_SERVICE_NAME_PREFIX}"
-            cluster-name: "${AWS_CLUSTER_NAME_PREFIX}-cluster"
+            cluster-name: "${AWS_CLUSTER_NAME}"
             service-name: "${AWS_SERVICE_NAME_PREFIX}-service"
             container-image-name-updates: "container=${AWS_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
