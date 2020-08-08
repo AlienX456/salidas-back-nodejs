@@ -31,10 +31,10 @@ const getSalidas = (request, response) => {
 
     }
     else{
-      response.status(400).json({error:'Formato del body erroneo (Formato incorrecto de fecha)'})
+      response.status(400).send()
     }
   }else{
-    response.status(400).json({error:'Formato del body erroneo (llaves erroneas)'})
+    response.status(400).send()
   }
 
 }
@@ -59,7 +59,7 @@ const postSalida = (request, response) => {
       });
   }
   else{
-    response.status(400).json({error:'Formato del body erroneo (llaves erroneas)'})
+    response.status(400).send()
   }
     
 }
