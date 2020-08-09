@@ -14,28 +14,23 @@ const collection = "salidas"
 
 const getSalidas = (request, response) => {
   
+  if (!isNaN(new Date(request.params.fecha_inicio).getTime()) && !isNaN(new Date(request.params.fecha_inicio).getTime())){
 
-  if (!(typeof request.body.fecha_inicio == 'undefined') && !(typeof request.body.fecha_final == 'undefined')){
-
-    if (!isNaN(new Date(request.body.fecha_inicio).getTime()) && !isNaN(new Date(request.body.fecha_inicio).getTime())){
-
-      MongoClient.connect(url, function(err, db) {
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db(mongdb);
+      dbo.collection(collection).find({fecha: {"$gte": request.params.fecha_inicio, "$lt": request.params.fecha_final}},{projection:{_id:0}}).toArray(function(err, result) {
         if (err) throw err;
-        var dbo = db.db(mongdb);
-        dbo.collection(collection).find({fecha: {"$gte": request.body.fecha_inicio, "$lt": request.body.fecha_final}},{projection:{_id:0}}).toArray(function(err, result) {
-          if (err) throw err;
-          db.close();
-          response.status(200).json(result);
-        });
+        db.close();
+        response.status(200).json(result);
       });
+    });
 
-    }
-    else{
-      response.status(400).send()
-    }
-  }else{
+  }
+  else{
     response.status(400).send()
   }
+
 
 }
 
