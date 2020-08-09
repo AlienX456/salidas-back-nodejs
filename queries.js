@@ -11,6 +11,9 @@ const mongdb = "salidas-db"
 const collection = "salidas"
 
 
+const getConexion = (request, response) => {
+  response.status(200).send()
+}
 
 const getSalidas = (request, response) => {
   
@@ -61,5 +64,6 @@ const postSalida = (request, response) => {
 
 module.exports = {
     getSalidas,
-    postSalida
+    postSalida,
+    getConexion
 }
