@@ -64,12 +64,22 @@ const post_json_body_bad = {
                        
 var app = require('../index.js')
 
+describe('Test de conexión: ',()=>{
+
+    it('Testear servicio arriba',(done)=>{
+        chai.request(url)
+        .get(api_v1_url)
+        .end( function(err,res){
+            expect(res).to.have.status(200)
+            done()
+        }
+        )
+    })
+})
+
 describe('Obtener cartas de vuelo de salida: ',()=>{
 
     it('Obtener las cartas de prueba entre 2020-08-04 - 2020-08-05',(done)=>{
-        
-        console.log(url+api_v1_url+"/2020-08-04/2020-08-05")
-
         chai.request(url)
         .get(api_v1_url+"/2020-08-04/2020-08-05")
         .end( function(err,res){
