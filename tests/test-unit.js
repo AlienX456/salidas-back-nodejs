@@ -24,8 +24,8 @@ const get_esperado = [{
                         "retraso_horas": 5,
                         "destino_ciudad": "Toronto",
                         "internacional": true,
-                        "aerolínea": "Air Canada",
-                        "Pasajeros": 100,
+                        "aerolinea": "Air Canada",
+                        "pasajeros": 100,
                         "avion": "787-7"
                      },
                      {
@@ -34,8 +34,8 @@ const get_esperado = [{
                         "retraso_horas": 5,
                         "destino_ciudad": "Toronto",
                         "internacional": true,
-                        "aerolínea": "Air Canada",
-                        "Pasajeros": 100,
+                        "aerolinea": "Air Canada",
+                        "pasajeros": 100,
                         "avion": "787-7"
                      }
                      ]
