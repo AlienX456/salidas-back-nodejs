@@ -10,7 +10,7 @@ const port = 5000
 
 //API OPERATIONS
 
-app.get('/api/v1/salidas',db.getSalidas)
+app.get('/api/v1/salida/:fecha_inicio/:fecha_final',db.getSalidas)
 app.post('/api/v1/salida',db.postSalida)
 
 //INIT API
